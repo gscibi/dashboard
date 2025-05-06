@@ -8,7 +8,8 @@ df = data_cleaning(df)
 st.title("Analytics Dashboard")
 
 st.markdown("""
-    **Created by:** [Gianluca Scibilia]
+    **Created by:** Gianluca Scibilia
+
     **Description:**
     This Streamlit app visualizes sales data through interactive charts.
 
