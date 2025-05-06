@@ -49,3 +49,38 @@ def plot_sales_over_time(df):
 
     # Display the plot in Streamlit
     st.plotly_chart(fig, use_container_width=True)
+
+def plot_sales_by_country(df):
+    """
+    This function generates an interactive bar plot for sales by country or region.
+    The user can toggle between sum or average aggregation for sales data.
+
+    Parameters:
+    - df (pandas.DataFrame): The DataFrame containing the sales data with 'Country' and 'Amount' columns.
+    """
+
+    # Add a selection box to choose the aggregation criteria (e.g., sum or average)
+    aggregation_choice = st.selectbox(
+        'Choose aggregation method:',
+        ['Sum', 'Average']
+    )
+
+    # Aggregating data based on user choice
+    if aggregation_choice == 'Sum':
+        aggregated_df = df.groupby('country', as_index=False)['amount'].sum()
+    elif aggregation_choice == 'Average':
+        aggregated_df = df.groupby('country', as_index=False)['amount'].mean()
+
+    # Plotly Bar chart for Sales by Country/Region
+    fig = px.bar(aggregated_df, x='country', y='amount', title='Sales by Country/Region',
+                 color='country', color_continuous_scale='Set2')
+
+    # Optional: format x-axis for better scrolling and rotate x-ticks
+    fig.update_layout(
+        xaxis_title='Country',
+        yaxis_title='Amount',
+        xaxis=dict(tickangle=45)
+    )
+
+    # Display the Plotly chart in Streamlit
+    st.plotly_chart(fig, use_container_width=True)
