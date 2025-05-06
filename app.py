@@ -7,6 +7,20 @@ df = pd.read_csv('sales.csv')
 df = data_cleaning(df)
 st.title("Analytics Dashboard")
 
+st.markdown("""
+    **Created by:** [Gianluca Scibilia]
+    **Description:**
+    This Streamlit app visualizes sales data through interactive charts.
+
+    Features include:
+    - Sales over time
+    - Sales by country/region
+    - Sales by product
+    - Sales by country
+    - Performance comparison between multiple salespeople
+    github repo: https://github.com/gscibi/dashboard
+""")
+
 st.sidebar.title("Navigation")
 show_time = st.sidebar.checkbox("📈 Sales Over Time", True)
 show_region = st.sidebar.checkbox("🌍 Sales by Region", True)
