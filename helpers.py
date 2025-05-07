@@ -9,7 +9,7 @@ def data_cleaning(df):
     '''
     This function cleans the data from the df
     Input/Output
-    df = pd.Data Frame
+    df = pd.DataFrame
     '''
     df.columns = df.columns.str.lower().str.strip().str.replace(' ', '_', regex=False)
     df['date'] = pd.to_datetime(df['date'], format='%d-%b-%y') # convert date to datetime
@@ -20,6 +20,8 @@ def plot_sales_over_time(df):
     """
     This function allows the user to select the aggregation period (Month/Week)
     and plots the sales over time with smooth lines and markers.
+    Input:
+    df = pd.DataFrame
     """
 
     # Streamlit selectbox for week/month selection
@@ -58,8 +60,8 @@ def plot_sales_by_country(df):
     This function generates an interactive bar plot for sales by country or region.
     The user can toggle between sum or average aggregation for sales data.
 
-    Parameters:
-    - df (pandas.DataFrame): The DataFrame containing the sales data with 'Country' and 'Amount' columns.
+    Input:
+    df = pd.DataFrame
     """
 
     # Add a selection box to choose the aggregation criteria (e.g., sum or average)
@@ -92,6 +94,9 @@ def plot_top_products_pie(df):
     """
     This function allows the user to select how many top products to display in a pie chart
     based on total sales amount.
+
+    Input:
+    df = pd.DataFrame
     """
 
     # Let user pick how many top products to show
@@ -112,58 +117,13 @@ def plot_top_products_pie(df):
     # Show chart
     st.plotly_chart(fig, use_container_width=True)
 
-# def plot_monthly_income_by_country(df):
-#     """
-#     This function creates a line plot showing monthly income trends by selected countries.
-#     Allows multiple country selection via Streamlit multiselect.
-#     """
-#     # Ensure date is datetime
-#     df['month'] = df['date'].dt.to_period('M').dt.to_timestamp()
-
-#     # Let the user pick countries to display
-#     available_countries = df['country'].dropna().unique().tolist()
-#     selected_countries = st.multiselect(
-#         "Select countries to display:",
-#         options=sorted(available_countries),
-#         default=available_countries[:3]  # Default to first 3 countries
-#     )
-
-#     # Filter data for selected countries
-#     if selected_countries:
-#         filtered_df = df[df['country'].isin(selected_countries)]
-
-#         # Aggregate by month and country
-#         income_summary = (
-#             filtered_df.groupby(['month', 'country'], as_index=False)['amount'].sum()
-#             .rename(columns={'month': 'Month', 'country': 'Country', 'amount': 'Total_Income'})
-#         )
-
-#         # Plot
-#         fig = px.line(
-#             income_summary,
-#             x='Month',
-#             y='Total_Income',
-#             color='Country',
-#             markers=True,
-#             title='Monthly Income Trend by Country'
-#         )
-
-#         fig.update_traces(line=dict(width=2), marker=dict(size=6))
-#         fig.update_layout(
-#             xaxis_title='Month',
-#             yaxis_title='Total Income',
-#             legend_title='Country',
-#             yaxis_tickprefix='$',
-#             xaxis=dict(tickangle=45),
-#             template='plotly_white',
-#             title=dict(x=0.5, xanchor='center', font=dict(size=20, family='Arial', color='black'))
-#         )
-
-#         st.plotly_chart(fig, use_container_width=True)
-#     else:
-#         st.warning("Please select at least one country to display the chart.")
 
 def plot_monthly_income_by_country(df):
+    '''
+    This function allows the user to select the countries and visualize
+    the sales data for each one.
+    df = pd.DataFrame
+    '''
     df['month'] = df['date'].dt.to_period('M').dt.to_timestamp()
 
     available_countries = df['country'].dropna().unique().tolist()
@@ -242,6 +202,12 @@ def plot_monthly_income_by_country(df):
 
 
 def compare_salespeople_performance(df):
+    '''
+    This function allows the user to see the salespeople performance
+    by country, product or month.
+    Input:
+    df = pd.DataFrame
+    '''
     st.subheader("📊 Compare Salesperson Performance")
 
     # Select multiple salespeople
