@@ -2,7 +2,7 @@
 
 An interactive, multi-dimensional sales analytics tool built with **Streamlit** and **Plotly**, designed to visualize and explore business performance across time, geography, and product dimensions.  
 
-You can find the dashboard here: https://gscibidashboard.streamlit.app/
+Please see the dashboard here: https://gscibidashboard.streamlit.app/
 ## ✨ What It Does
 
 This dashboard provides a user-friendly interface to dive deep into sales data and uncover insights about:
