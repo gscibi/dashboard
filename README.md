@@ -1,6 +1,7 @@
 # 📊 Sales Analytics Dashboard
 
-An interactive, multi-dimensional sales analytics tool built with **Streamlit** and **Plotly**, designed to visualize and explore business performance across time, geography, and product dimensions.
+An interactive, multi-dimensional sales analytics tool built with **Streamlit** and **Plotly**, designed to visualize and explore business performance across time, geography, and product dimensions.  
+
 You can find the dashboard here: https://gscibidashboard.streamlit.app/
 ## ✨ What It Does
 
